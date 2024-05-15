@@ -1,7 +1,7 @@
 import services from "../utils/service.js";
 import { cartModel, orderModel } from "../models";
 import { BadRequestError, NotFoundError } from "../error/index.js";
-import { ORDERSTATUS } from "../utils/enum";
+import { ORDER_STATUS } from "../utils/enum";
 import mongoose from "mongoose";
 
 const addOrder = async (req, res, next) => {
@@ -133,7 +133,7 @@ const updateOrder = async (req, res, next) => {
     let { orderId, status } = req.body;
     if (
       req.body?.status &&
-      !Object.keys(ORDERSTATUS).includes(req.body?.status)
+      !Object.keys(ORDER_STATUS).includes(req.body?.status)
     ) {
       throw new NotFoundError("please pass valid status");
     }
@@ -174,8 +174,8 @@ const deleteOrder = async (req, res, next) => {
     if (!orderId) {
       throw new NotFoundError("please pass valid cartId");
     }
-    const productDelete = await orderModel.findOne({
-      _id: orderId,
+    const productDelete =await orderModel.findOne({
+      _id: orderId, 
       isDeleted: false,
     });
     if (!productDelete) {
@@ -183,7 +183,7 @@ const deleteOrder = async (req, res, next) => {
     }
     productDelete.isDeleted = true;
     productDelete.isCancel = true;
-    productDelete.save();
+   await productDelete.save();
     return services.sendResponse(res, 200, "order Delete Successfully");
   } catch (error) {
     next(error);

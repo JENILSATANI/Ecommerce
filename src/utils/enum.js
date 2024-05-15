@@ -3,7 +3,7 @@ export const ROLE= {
     CUSTOMER:"CUSTOMER"
 }
 
-export const ORDERSTATUS= {
+export const ORDER_STATUS= {
     PENDING:"PENDING",
     CONFIRMED:"CONFIRMED",
     SHIPPED:"SHIPPED",

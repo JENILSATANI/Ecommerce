@@ -1,12 +1,12 @@
 import { Schema, model } from "mongoose";
-import {ORDERSTATUS} from '../utils/enum'
+import {ORDER_STATUS} from '../utils/enum'
 
 const orderSchema = Schema(
   {
     status: {
       type: String,
-      enum: [ORDERSTATUS.PENDING,ORDERSTATUS.CONFIRMED,ORDERSTATUS.SHIPPED,ORDERSTATUS.DELIVERED],
-      default: ORDERSTATUS.PENDING,
+      enum: [ORDER_STATUS.PENDING,ORDER_STATUS.CONFIRMED,ORDER_STATUS.SHIPPED,ORDER_STATUS.DELIVERED],
+      default: ORDER_STATUS.PENDING,
     },
     cartId: {
       type: Schema.Types.ObjectId,

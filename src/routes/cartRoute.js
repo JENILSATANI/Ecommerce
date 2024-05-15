@@ -1,6 +1,6 @@
 import express from "express";
 import { cartController } from "../controllers";
-import {adminAuth,customerAuth} from '../middleware'
+import {customerAuth} from '../middleware'
 export default express
 
   .Router()
