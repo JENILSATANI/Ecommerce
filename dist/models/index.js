@@ -21,10 +21,22 @@ Object.defineProperty(exports, "imageModel", {
     return _imageModel["default"];
   }
 });
+Object.defineProperty(exports, "orderModel", {
+  enumerable: true,
+  get: function get() {
+    return _orderModel["default"];
+  }
+});
 Object.defineProperty(exports, "productModel", {
   enumerable: true,
   get: function get() {
     return _productModel["default"];
+  }
+});
+Object.defineProperty(exports, "reviewModel", {
+  enumerable: true,
+  get: function get() {
+    return _reviewModel["default"];
   }
 });
 Object.defineProperty(exports, "tagModel", {
@@ -45,4 +57,6 @@ var _categoryModel = _interopRequireDefault(require("./categoryModel"));
 var _tagModel = _interopRequireDefault(require("./tagModel"));
 var _imageModel = _interopRequireDefault(require("./imageModel"));
 var _cartModel = _interopRequireDefault(require("./cartModel"));
+var _reviewModel = _interopRequireDefault(require("./reviewModel"));
+var _orderModel = _interopRequireDefault(require("./orderModel"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }

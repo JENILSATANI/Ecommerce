@@ -8,12 +8,15 @@ const addToCart = async (req, res, next) => {
     if (!req.body) throw new Error("Please Enter Data");
     let { productId, userId } = req.body;
     if (!productId) {
-      throw new BadRequestError("Please Pass ProjectId");
+      throw new NotFoundError("Please Pass ProjectId");
+    }
+    if (!userId) {
+      throw new NotFoundError("Please Pass userId");
     }
 
     let productExits = await productModel.findOne({ _id: productId });
     if (!productExits) {
-      throw new BadRequestError("Product not found.");
+      throw new NotFoundError("Product not found.");
     }
     let userExits = await userModel.aggregate([
       { $match: { _id: new mongoose.Types.ObjectId(userId) } },

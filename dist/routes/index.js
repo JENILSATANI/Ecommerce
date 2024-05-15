@@ -21,10 +21,22 @@ Object.defineProperty(exports, "categoryRoute", {
     return _categoryRoute["default"];
   }
 });
+Object.defineProperty(exports, "orderRoute", {
+  enumerable: true,
+  get: function get() {
+    return _orderRoute["default"];
+  }
+});
 Object.defineProperty(exports, "productRoute", {
   enumerable: true,
   get: function get() {
     return _productRoute["default"];
+  }
+});
+Object.defineProperty(exports, "reviewRoute", {
+  enumerable: true,
+  get: function get() {
+    return _reviewRoute["default"];
   }
 });
 Object.defineProperty(exports, "tagRoute", {
@@ -45,4 +57,6 @@ var _productRoute = _interopRequireDefault(require("./productRoute"));
 var _categoryRoute = _interopRequireDefault(require("./categoryRoute"));
 var _tagRoute = _interopRequireDefault(require("./tagRoute"));
 var _cartRoute = _interopRequireDefault(require("./cartRoute"));
+var _reviewRoute = _interopRequireDefault(require("./reviewRoute"));
+var _orderRoute = _interopRequireDefault(require("./orderRoute"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }

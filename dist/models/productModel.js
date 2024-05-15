@@ -27,14 +27,6 @@ var ProductSchema = (0, _mongoose.Schema)({
   },
   productImages: {
     type: String
-  },
-  isActive: {
-    type: Boolean,
-    "default": true
-  },
-  isDeleted: {
-    type: Boolean,
-    "default": false
   }
 }, {
   timestamps: true,

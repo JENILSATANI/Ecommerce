@@ -230,7 +230,7 @@ var getProduct = /*#__PURE__*/function () {
 }();
 var updateProduct = /*#__PURE__*/function () {
   var _ref4 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4(req, res, next) {
-    var _req$body2, productName, price, description, productId, productExist, data;
+    var productId, productExist, data;
     return _regeneratorRuntime().wrap(function _callee4$(_context4) {
       while (1) switch (_context4.prev = _context4.next) {
         case 0:
@@ -241,13 +241,13 @@ var updateProduct = /*#__PURE__*/function () {
           }
           throw new Error("Please Enter Data");
         case 3:
-          _req$body2 = req.body, productName = _req$body2.productName, price = _req$body2.price, description = _req$body2.description, productId = _req$body2.productId;
+          productId = req.body.productId;
           console.log("🚀 ~ updateProduct ~ req.body:", req.body);
           if (productId) {
             _context4.next = 7;
             break;
           }
-          throw new Error("Please Enter productId");
+          throw new _index.BadRequestError("Product already exists.");
         case 7:
           if (!productId) {
             _context4.next = 14;
@@ -264,7 +264,7 @@ var updateProduct = /*#__PURE__*/function () {
             _context4.next = 14;
             break;
           }
-          throw new Error("Project Not Found");
+          throw new _index.BadRequestError("Project Not Found");
         case 14:
           _context4.next = 16;
           return _models.productModel.updateOne({

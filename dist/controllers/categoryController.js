@@ -15,43 +15,36 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 var addCategory = /*#__PURE__*/function () {
   var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(req, res, next) {
-    var errors, categoryExist;
+    var categoryExist;
     return _regeneratorRuntime().wrap(function _callee$(_context) {
       while (1) switch (_context.prev = _context.next) {
         case 0:
           _context.prev = 0;
-          errors = (0, _expressValidator.validationResult)(req);
-          if (errors.isEmpty()) {
-            _context.next = 4;
-            break;
-          }
-          return _context.abrupt("return", _service["default"].sendResponse(res, 400, errors.array()));
-        case 4:
-          _context.next = 6;
+          _context.next = 3;
           return _models.categoryModel.findOne({
             categoryName: req.body.categoryName
           });
-        case 6:
+        case 3:
           categoryExist = _context.sent;
           if (!categoryExist) {
-            _context.next = 9;
+            _context.next = 6;
             break;
           }
           throw new _index.BadRequestError("Category Already exist");
-        case 9:
-          _context.next = 11;
+        case 6:
+          _context.next = 8;
           return _models.categoryModel.create(req.body);
-        case 11:
+        case 8:
           return _context.abrupt("return", _service["default"].sendResponse(res, 200, "Your data has been save..!", req.body));
-        case 14:
-          _context.prev = 14;
+        case 11:
+          _context.prev = 11;
           _context.t0 = _context["catch"](0);
           next(_context.t0);
-        case 17:
+        case 14:
         case "end":
           return _context.stop();
       }
-    }, _callee, null, [[0, 14]]);
+    }, _callee, null, [[0, 11]]);
   }));
   return function addCategory(_x, _x2, _x3) {
     return _ref.apply(this, arguments);
@@ -94,59 +87,55 @@ var getCategory = /*#__PURE__*/function () {
 }();
 var updateCategory = /*#__PURE__*/function () {
   var _ref3 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3(req, res, next) {
-    var errors, categoryData, categoryExist, categoryUpdate;
+    var categoryData, categoryExist, categoryUpdate;
     return _regeneratorRuntime().wrap(function _callee3$(_context3) {
       while (1) switch (_context3.prev = _context3.next) {
         case 0:
           _context3.prev = 0;
-          errors = (0, _expressValidator.validationResult)(req);
-          if (errors.isEmpty()) {
-            _context3.next = 4;
-            break;
-          }
-          return _context3.abrupt("return", _service["default"].sendResponse(res, 400, errors.array()));
-        case 4:
           console.log("🚀 ~ updateCategory ~ req.params.id:", req.query.id);
-          _context3.next = 7;
+          _context3.next = 4;
           return _models.categoryModel.findOne({
             _id: req.query.id,
             isDeleted: false
           });
-        case 7:
+        case 4:
           categoryData = _context3.sent;
           if (categoryData) {
-            _context3.next = 10;
+            _context3.next = 7;
             break;
           }
           throw new _index.NotFoundError("Category Not found.");
-        case 10:
-          _context3.next = 12;
+        case 7:
+          _context3.next = 9;
           return _models.categoryModel.findOne({
+            _id: {
+              $ne: req.query.id
+            },
             categoryName: req.body.categoryName
           });
-        case 12:
+        case 9:
           categoryExist = _context3.sent;
           if (!categoryExist) {
-            _context3.next = 15;
+            _context3.next = 12;
             break;
           }
           throw new _index.BadRequestError("Category Already Exists.");
-        case 15:
+        case 12:
           categoryData.categoryName = req.body.categoryName;
-          _context3.next = 18;
+          _context3.next = 15;
           return categoryData.save();
-        case 18:
+        case 15:
           categoryUpdate = _context3.sent;
           return _context3.abrupt("return", _service["default"].sendResponse(res, 200, "Category Updated", categoryUpdate));
-        case 22:
-          _context3.prev = 22;
+        case 19:
+          _context3.prev = 19;
           _context3.t0 = _context3["catch"](0);
           next(_context3.t0);
-        case 25:
+        case 22:
         case "end":
           return _context3.stop();
       }
-    }, _callee3, null, [[0, 22]]);
+    }, _callee3, null, [[0, 19]]);
   }));
   return function updateCategory(_x7, _x8, _x9) {
     return _ref3.apply(this, arguments);
