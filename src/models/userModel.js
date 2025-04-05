@@ -4,24 +4,24 @@ const userSchema = mongoose.Schema(
   {
     name: {
       type: String,
-      require: true,
+      required: true,
     },
     role: {
       type: String,
-      enum: [ROLE.ADMIN, ROLE.CUSTOMER],
-      default: ROLE.CUSTOMER,
+      enum: [ROLE.ADMIN, ROLE.USER],
+      default: ROLE.USER,
     },
     email: {
       type: String,
-      require: true,
+      required: true,
     },
     phoneNumber: {
       type: String,
-      require: true,
+      required: true,
     },
     password: {
       type: String,
-      require: true,
+      required: true,
     },
     isDeleted: {
       type: Boolean,

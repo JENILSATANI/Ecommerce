@@ -4,7 +4,7 @@ import { ROLE } from "../utils/enum";
 import jwt from "jsonwebtoken";
 require("dotenv").config({ path: ".env" });
 let secret = process.env.SECRET_KEY;
-import { BadRequestError, NotFoundError } from "../error/index.js";
+  import { BadRequestError, NotFoundError } from "../error/index.js";
 import services from "../utils/service.js";
 
 const logIn = async (req, res, next) => {
@@ -35,7 +35,7 @@ const logIn = async (req, res, next) => {
       { email: checkUserRole.email, _id: checkUserRole._id },
       secret,
       {
-        expiresIn: "10d",
+        expiresIn: "1d",
       }
     );
     res.status(200).send({
@@ -51,18 +51,24 @@ const logIn = async (req, res, next) => {
 
 const signUp = async (req, res, next) => {
   try {
+
     if (!req.body) {
-      throw new NotFoundError("please pass data");
+      throw new BadRequestError("please pass data");
     }
 
-    let { email, name, password, phoneNumber } = req.body;
+    let { email, name, password, phoneNumber, confirmPassword } = req.body;
 
-    if (!email || !name || !password || !phoneNumber) {
-      throw new NotFoundError("enter required valid filed");
+    console.log(req.body)
+    if (['email', 'name', 'password', 'phoneNumber', "confirmPassword"].some(field => !req.body[field])) {
+      throw new BadRequestError("Enter all required valid fields.");
     }
 
-    if (req.body.phoneNumber.toString().length != 10) {
-      throw new NotFoundError("PhoneNumber is not valid");
+    if (phoneNumber.toString().length !== 10) {
+      throw new BadRequestError("Phone number is not valid");
+    }
+
+    if (password !== confirmPassword) {
+      throw new BadRequestError("Password and Confirm Password not match");
     }
 
     const checkUser = await userModel.findOne({
@@ -70,11 +76,11 @@ const signUp = async (req, res, next) => {
     });
 
     if (checkUser?.email === email) {
-      throw new NotFoundError("email is Already Used");
+      throw new BadRequestError("email is Already Used");
     }
 
     if (checkUser?.phoneNumber === phoneNumber) {
-      throw new NotFoundError("Phone Number Already Used");
+      throw new BadRequestError("Phone Number Already Used");
     }
 
     const hashed = await hashPassword(password);
@@ -87,7 +93,7 @@ const signUp = async (req, res, next) => {
     });
 
     if (!createUser) {
-      throw new NotFoundError("something went wrong!");
+      throw new BadRequestError("something went wrong!");
     }
     return services.sendResponse(
       res,
@@ -105,12 +111,12 @@ const forgotPassword = async (req, res, next) => {
     let { email, newPassword, confirmPassword } = req.body;
 
     if (!email || !newPassword || !confirmPassword) {
-      throw new NotFoundError("please pass required valid data");
+      throw new BadRequestError("please pass required valid data");
     }
 
     const checkEmail = await userModel.findOne({
       email: email,
-      role: "CUSTOMER",
+      role: "USER",
     });
     if (!checkEmail) {
       throw new NotFoundError("email is not found");
@@ -134,11 +140,11 @@ const forgotPassword = async (req, res, next) => {
   }
 };
 
-const updateProfileData = async (req, res,next) => {
+const updateProfileData = async (req, res, next) => {
   try {
     let { userId } = req.body;
     if (!userId) {
-      throw new NotFoundError("please enter userId");
+      throw new BadRequestError("please enter userId");
     }
 
     let userExits = await userModel.findOne({ _id: userId, role: "CUSTOMER" });
@@ -164,4 +170,30 @@ const updateProfileData = async (req, res,next) => {
     next(error);
   }
 };
-export default { logIn, signUp, forgotPassword ,updateProfileData};
+
+const userLogout = async (req, res, next) => {
+  try {
+    const invalidTokens = new Set();
+
+    const token = req.headers['authorization']?.split(' ')[1];
+    
+    if (token) {
+      invalidTokens.add(token); 
+      console.log('Token added to blacklist:', token);
+      console.log('Current invalidTokens:', Array.from(invalidTokens));    }
+
+    return services.sendResponse(
+      res,
+      200,
+      "Logged out successfully"
+    );
+
+
+  } catch (error) {
+    next(error);
+  }
+};
+
+
+
+export default { logIn, signUp, forgotPassword, updateProfileData, userLogout };

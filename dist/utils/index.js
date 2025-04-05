@@ -17,4 +17,4 @@ Object.defineProperty(exports, "hashPassword", {
 });
 var _hashPassword = _interopRequireDefault(require("./hashPassword"));
 var _comparePassword = _interopRequireDefault(require("./comparePassword"));
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+function _interopRequireDefault(e) { return e && e.__esModule ? e : { "default": e }; }

@@ -6,28 +6,28 @@ Object.defineProperty(exports, "__esModule", {
 exports["default"] = void 0;
 var _mongoose = _interopRequireDefault(require("mongoose"));
 var _enum = require("../utils/enum");
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+function _interopRequireDefault(e) { return e && e.__esModule ? e : { "default": e }; }
 var userSchema = _mongoose["default"].Schema({
   name: {
     type: String,
-    require: true
+    required: true
   },
   role: {
     type: String,
-    "enum": [_enum.ROLE.ADMIN, _enum.ROLE.CUSTOMER],
-    "default": _enum.ROLE.CUSTOMER
+    "enum": [_enum.ROLE.ADMIN, _enum.ROLE.USER],
+    "default": _enum.ROLE.USER
   },
   email: {
     type: String,
-    require: true
+    required: true
   },
   phoneNumber: {
     type: String,
-    require: true
+    required: true
   },
   password: {
     type: String,
-    require: true
+    required: true
   },
   isDeleted: {
     type: Boolean,

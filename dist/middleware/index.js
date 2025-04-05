@@ -9,10 +9,10 @@ Object.defineProperty(exports, "adminAuth", {
     return _auth.adminAuth;
   }
 });
-Object.defineProperty(exports, "customerAuth", {
+Object.defineProperty(exports, "userAuth", {
   enumerable: true,
   get: function get() {
-    return _auth.customerAuth;
+    return _auth.userAuth;
   }
 });
 var _auth = require("./auth");

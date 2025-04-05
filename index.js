@@ -1,15 +1,13 @@
 import express from "express";
 import bodyParser from "body-parser";
 import cors from "cors";
+import session  from "express-session"
+
+
+  
 import {
     userRoute,
-    adminRoute,
-    productRoute,
-    categoryRoute,
-    tagRoute,
-    cartRoute,
-    reviewRoute,
-    orderRoute
+    adminRoute
   } from "./src/routes";
 import errorHandler from "./src/error/handler";
 
@@ -33,12 +31,6 @@ app.use("/uploads", express.static("./uploads"));
 
 app.use("/user", userRoute);
 app.use("/admin", adminRoute);
-app.use("/product", productRoute);
-app.use("/category", categoryRoute);
-app.use("/tag", tagRoute);
-app.use("/cart", cartRoute);
-app.use("/review", reviewRoute);
-app.use("/order", orderRoute);
 app.use(errorHandler);
 
 

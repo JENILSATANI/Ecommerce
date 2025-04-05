@@ -1,11 +1,4 @@
 export const ROLE= {
     ADMIN:"ADMIN",
-    CUSTOMER:"CUSTOMER"
-}
-
-export const ORDER_STATUS= {
-    PENDING:"PENDING",
-    CONFIRMED:"CONFIRMED",
-    SHIPPED:"SHIPPED",
-    DELIVERED:"DELIVERED"
+    USER:"USER"
 }

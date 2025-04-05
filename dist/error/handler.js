@@ -5,7 +5,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports["default"] = void 0;
 var _service = _interopRequireDefault(require("../utils/service"));
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+function _interopRequireDefault(e) { return e && e.__esModule ? e : { "default": e }; }
 var errorHandler = function errorHandler(err, req, res, next) {
   console.log('Error :>> ', err);
   var message = err.message || "Something Went Wrong.";

@@ -4,5 +4,5 @@ import {adminAuth} from '../middleware'
 
 export default express
   .Router()
-  .get("/adminOrderGet",adminAuth , adminController.getOrder);
+  .get("/getUserDetails",adminAuth , adminController.getUserDetails);
   

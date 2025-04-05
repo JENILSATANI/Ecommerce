@@ -1,7 +1,7 @@
 "use strict";
 
 var _mongoose = _interopRequireDefault(require("mongoose"));
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+function _interopRequireDefault(e) { return e && e.__esModule ? e : { "default": e }; }
 var databaseUrl = process.env.DATABASE_URL;
 console.log('databaseUrl :>> ', databaseUrl);
 _mongoose["default"].set("strictQuery", true).connect(databaseUrl).then(function () {

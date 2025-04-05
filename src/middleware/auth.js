@@ -3,12 +3,14 @@ require("dotenv").config();
 let secret = process.env.SECRET_KEY;
 import { userModel } from "../models";
 import { ROLE } from "../utils/enum";
+const invalidTokens = new Set();
 
 const adminAuth = async (req, res, next) => {
   try {
     const token = req.header("Authorization");
     if (!token) throw new Error("token is required");
     const matchToken = token.split(" ")[1];
+  
     const decoded = jwt.verify(matchToken, secret);
     if (!decoded) throw new Error("id is not match");
 
@@ -27,11 +29,15 @@ const adminAuth = async (req, res, next) => {
   }
 };
 
-const customerAuth = async (req, res, next) => {
+const userAuth = async (req, res, next) => {
   try {
     const token = req.header("Authorization");
     if (!token) throw new Error("token is required");
     const matchToken = token.split(" ")[1];
+    console.log("matchToken",matchToken,"",invalidTokens)
+    if (invalidTokens.has(matchToken)) {
+      return res.status(401).send('Token is invalid');
+    }
     const decoded = jwt.verify(matchToken, secret);
     if (!decoded) throw new Error("id is not match");
 
@@ -39,7 +45,7 @@ const customerAuth = async (req, res, next) => {
       _id: decoded._id,
     });
     if (!user) throw new Error("user is not found ");
-    if (user.role !== ROLE.CUSTOMER) throw new Error("you are unAuthorized")
+    if (user.role !== ROLE.USER) throw new Error("you are unAuthorized")
     req.token = token;
     req.user = user;
     next();
@@ -49,4 +55,5 @@ const customerAuth = async (req, res, next) => {
   }
 };
 
-export  {adminAuth,customerAuth};
+
+export {adminAuth,userAuth};

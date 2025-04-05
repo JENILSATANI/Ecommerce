@@ -9,42 +9,6 @@ Object.defineProperty(exports, "adminController", {
     return _adminController["default"];
   }
 });
-Object.defineProperty(exports, "cartController", {
-  enumerable: true,
-  get: function get() {
-    return _cartController["default"];
-  }
-});
-Object.defineProperty(exports, "categoryController", {
-  enumerable: true,
-  get: function get() {
-    return _categoryController["default"];
-  }
-});
-Object.defineProperty(exports, "orderController", {
-  enumerable: true,
-  get: function get() {
-    return _orderController["default"];
-  }
-});
-Object.defineProperty(exports, "productController", {
-  enumerable: true,
-  get: function get() {
-    return _productController["default"];
-  }
-});
-Object.defineProperty(exports, "reviewController", {
-  enumerable: true,
-  get: function get() {
-    return _reviewController["default"];
-  }
-});
-Object.defineProperty(exports, "tagController", {
-  enumerable: true,
-  get: function get() {
-    return _tagController["default"];
-  }
-});
 Object.defineProperty(exports, "userController", {
   enumerable: true,
   get: function get() {
@@ -53,10 +17,4 @@ Object.defineProperty(exports, "userController", {
 });
 var _userController = _interopRequireDefault(require("./userController.js"));
 var _adminController = _interopRequireDefault(require("./adminController.js"));
-var _productController = _interopRequireDefault(require("./productController.js"));
-var _categoryController = _interopRequireDefault(require("./categoryController.js"));
-var _tagController = _interopRequireDefault(require("./tagController.js"));
-var _cartController = _interopRequireDefault(require("./cartController.js"));
-var _reviewController = _interopRequireDefault(require("./reviewController.js"));
-var _orderController = _interopRequireDefault(require("./orderController.js"));
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+function _interopRequireDefault(e) { return e && e.__esModule ? e : { "default": e }; }

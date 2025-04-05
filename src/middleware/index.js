@@ -1,1 +1,1 @@
-export { customerAuth,adminAuth } from "./auth";
+export { userAuth,adminAuth } from "./auth";
