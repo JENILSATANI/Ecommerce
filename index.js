@@ -28,6 +28,9 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use("/uploads", express.static("./uploads"));
 
+app.get('/exommerce',()=>{
+  console.log('website is live :>> ', );
+})
 
 app.use("/user", userRoute);
 app.use("/admin", adminRoute);
