@@ -28,8 +28,9 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use("/uploads", express.static("./uploads"));
 
-app.get('/exommerce',()=>{
+app.get('/exommerce',(req,res)=>{
   console.log('website is live :>> ', );
+  res.send("jenil satani is check")
 })
 
 app.use("/user", userRoute);
